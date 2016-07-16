@@ -18,8 +18,7 @@ var pixelBuffer = [];
 
 var mouseIsDown = false;
 
-var colourDropper = false,
-	flood = false;
+var toolactive = "brush";
 
 for (var i = 0; i < pixelBufferSize; i++) {
 	pixelBuffer[i] = 0xFFFFFF;
@@ -45,15 +44,15 @@ canvas.onmousedown = function(e)
 	mouseIsDown = true;
 	var rect = canvas.getBoundingClientRect();
 	
-	if(colourDropper)
+	if(toolactive == "Dropper")
 	{	
 		var imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
 		var data = imageData.data;
 		currentColour = getColourCanvas(data,e.pageX - rect.left, e.pageY - rect.top);
 		updateColourPicker();
-		colourDropper = false;
+		toolactive = "Brush";
 	}
-	else if(flood)
+	else if(toolactive == "Fill")
 	{
 		floodFill(e.pageX - rect.left, e.pageY - rect.top);
 		flood = false;

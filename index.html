@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>Draw N' Scale</title>
+</head>
+
+<body>
+	<div id="wrapper">
+		<canvas id="canvas" ></canvas>
+		<div id="controls">
+			<div id="colourWindow" style="background-color: rgb(143, 44, 171)"></div>
+			<br>
+			<label>Red:</label>
+			<input id="red" type="text" disabled></input>
+			<input id="redSlider" type="range" min="0" max="255" oninput="updateTextboxs()"></input>
+			<label>Green:</label>
+			<input id="green" type="text" disabled></input>
+			<input id="greenSlider" type="range" min="0" max="255" oninput="updateTextboxs()"></input>
+			<label>Blue:</label>
+			<input id="blue" type="text" disabled></input>
+			<input id="blueSlider" type="range" min="0" max="255" oninput="updateTextboxs()"></input>
+			<br>
+			<label>Tools:</label>
+			<hr>
+			<button onclick="colourDropper = true;">Dropper</button>
+			<button onclick="flood = true;">Fill</button>
+			<br>
+			<br>
+			<label>Scaling Info:</label>
+			<hr>
+			<label>Scaling algorithm:</label>
+			<select onchange="updateScalingAlgo(this)" id="scaleType">
+				<option value="ScaleTwoX">Scale2X</option>
+				<option value="NearestNeighbor">NearestNeighbor</option>
+			</select>
+
+			<br>
+			<br>
+
+			<div>
+				<label>Scale by:</label>
+				<br>
+				<select onchange="updateScalingAmount(this)" id="scaleAmount">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="4">4</option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected="selected">16</option>
+					<option value="24">24</option>
+					<option value="26">26</option>
+					<option value="48">48</option>
+					<option value="52">52</option>
+					<option value="78">78</option>
+					<option value="104">104</option>
+					<option value="156">156</option>
+					<option value="208">208</option>
+					<option value="312">312</option>
+				</select>
+			</div>
+
+			<br>
+			<label>Image Info:</label>
+			<hr>
+			<label>Name:</label>
+			<input type="text" id="imageName" onblur="updateFileName(this)" value="image"></input>
+
+			<div id="buttons">
+				<button onclick="clearBuffer()">Clear</button>
+				<button onclick="downloadImage()"><a id="download" download="image.png">Save</a></button>
+			</div>
+		</div>
+	</div>
+	
+
+	<script src="draw.js"></script>
+</body>
+
+</html>
